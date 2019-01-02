@@ -2,6 +2,10 @@
 
 # Front-end Onboarding
 
+## Tech requirements
+
+Complete the requirements below using a _React-Redux_ solution in _ES6_. Style your components with _styled-components_.
+
 ## Functional requirements
 
 Build a user interface to view a list of financial transactions for a user. Your approach should be user focused with a simple to use interface that displays all the needed information concisely.
@@ -20,7 +24,7 @@ The user should be able to do the following:
 ## Non-functional requirements
 
 - Your code should be a hosted on Github with periodic commits instead of one large commit. Make sure your commit messages are clear and understandable.
-- The UI should look good and be easy to use.
+- The UI should be responsive and easy to use.
 
 ## API
 
@@ -55,4 +59,5 @@ Use this data to construct your UI. We recommend spending a few minutes analyzin
 - [Beginner's Guide to React with ES6](https://medium.com/the-andela-way/a-beginners-guide-to-react-with-es6-a2ed0b5c977e) useful guide to help you get started
 - [Create React App](https://github.com/facebookincubator/create-react-app]) starter kit
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial) for an idea of what redux is and how to implement it with React
+- [styled-components](https://www.styled-components.com/) for styling your React components, in style
 - [Dribbble transactions UI examples](https://dribbble.com/tags/transactions) for inspiration
