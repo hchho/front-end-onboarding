@@ -4,7 +4,7 @@
 
 ## Tech requirements
 
-Complete the requirements below using a _React-Redux_ solution in _ES6_. Style your components with _styled-components_.
+Complete the requirements below using a **React-Redux** solution in **ES6**. Style your components with **styled-components**.
 
 ## Functional requirements
 
