@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import transactionServices from './../services/transactionsServices';
-// import TransactionsList from './transactionsList'
-import VisibleTransactions from '../containers/VisibleTransactions'
+import TransactionsList from './transactionsList'
+// import VisibleTransactions from '../containers/VisibleTransactions'
 import ControlPanel from './controlPanel'
 
 class DashBoard extends Component {
@@ -26,8 +26,10 @@ class DashBoard extends Component {
                     Transaction count: {this.state.transactionCount}
                 </p>
                 <p>
-                    {/* Transactions: <TransactionsList transactions={this.state.transactions}/> */}
-                    Transactions: <VisibleTransactions />
+                    Total balance: 
+                </p>
+                <p>
+                    Transactions: <TransactionsList transactions={this.state.transactions}/>
                 </p>
             </div>
         );

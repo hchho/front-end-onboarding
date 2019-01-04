@@ -27,7 +27,7 @@ TransactionsList.propTypes = {
                 runningBalance: PropTypes.number.isRequired,
                 category: PropTypes.string,
                 transactionId: PropTypes.string.isRequired
-            }).isRequired
+            })
         }).isRequired
     ).isRequired
 }
