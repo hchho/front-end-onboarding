@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TransactionsList from './transactionsList'
 // import VisibleTransactions from '../containers/VisibleTransactions'
 import ControlPanel from './controlPanel'
+import AccountsList from './accountsList'
 
 const ASCENDING_DATE = 'ascending'
 const DESCENDING_DATE = 'descending'
@@ -12,12 +13,13 @@ class DashBoard extends Component {
         this.state = {
             sortBy: ASCENDING_DATE,
             transactionDetails: props,
+            accounts: [],
             transactions: props.transactions
         }
-        this.handleSortChange = this.handleSortChange.bind(this);
+        this.handleSortByDateChange = this.handleSortByDateChange.bind(this);
     }
 
-    handleSortChange(event) {
+    handleSortByDateChange(event) {
         var sortedTransactions;
         if (event.target.value === ASCENDING_DATE) {
             sortedTransactions = this.state.transactions.sort((a, b) => {
@@ -48,11 +50,13 @@ class DashBoard extends Component {
                     Transaction count: {this.state.transactionDetails.transactionCount}
                 </p>
                 <div>
-                    Sort by date: <select value={this.state.sortBy} onChange={this.handleSortChange}>
-
+                    Sort by date: <select value={this.state.sortBy} onChange={this.handleSortByDateChange}>
                         <option value={ASCENDING_DATE}>newest to oldest</option>
                         <option value={DESCENDING_DATE}>oldest to newest</option>
                     </select>
+                </div>
+                <div>
+                    Accounts: <AccountsList />
                 </div>
                 <p>
                     Transactions: <TransactionsList transactions={this.state.transactions} />
