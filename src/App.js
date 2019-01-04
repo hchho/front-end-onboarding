@@ -17,7 +17,6 @@ class App extends Component {
     fetch('http://demo1124891.mockable.io/transactions', { mode: 'cors' })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         this.setState({ isLoading: false, info: data })
       })
   }
@@ -28,7 +27,7 @@ class App extends Component {
     }
     return (
       <div className="container">
-        <DashBoard props={this.state.info }/>
+        <DashBoard { ...this.state.info} />
       </div>
     );
   }

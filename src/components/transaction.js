@@ -15,12 +15,7 @@ const Transaction = ({ info }) => (
         <p>
             Amount: { info.amount }
         </p>
-        <p>
-            Withdrawal: { info.withdrawal }
-        </p>
-        <p>
-            Deposit: { info.deposit }
-        </p>
+        {renderTransactionType(info.withdrawal, info.deposit)}
         <p>
             Running balance: { info.runningBalance }
         </p>
@@ -32,6 +27,24 @@ const Transaction = ({ info }) => (
         </p>
     </div>
 )
+
+const renderTransactionType = function(withdrawal, deposit) {
+    if (withdrawal) {
+        return (
+            <p>
+                Withdrawal: {withdrawal}
+            </p>
+        )
+    }
+    if (deposit) {
+        return (
+            <p>
+                Deposit: {deposit}
+            </p>
+        )
+    }
+    return (<p>Neither deposited nor withdrew</p>)
+}
 
 Transaction.propTypes = {
     info: PropTypes.shape({
