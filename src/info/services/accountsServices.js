@@ -6,4 +6,4 @@ const accountServices = {
     }
 }
 
-export default transactionServices
+export default accountServices
