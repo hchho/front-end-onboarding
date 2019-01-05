@@ -2,17 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Transaction from './transaction'
 
-const TransactionsList = ({ transactions }) => (
-    <ul>
-        { transactions.map(function (transaction, index) {
-            return (
-                <li key={transaction.transactionId}>
-                    <Transaction info={transaction} />
-                </li>
-            )
-        })}
-    </ul>
-)
+const TransactionsList = ({ transactions }) => {
+    if (transactions) {
+        return (
+            <ul>
+                { transactions.map(function (transaction, index) {
+                    return (
+                        <li key={transaction.transactionId}>
+                            <Transaction info={transaction} />
+                        </li>
+                    )
+                })}
+            </ul>
+        )
+    } else {
+        return (<span>Loading...</span>)
+    }
+}
 
 TransactionsList.propTypes = {
     transactions: PropTypes.arrayOf(

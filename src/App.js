@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 import DashBoard from './components/dashboard'
 
 class App extends Component {

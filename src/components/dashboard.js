@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import TransactionsList from './transactionsList'
-// import VisibleTransactions from '../containers/VisibleTransactions'
+import VisibleTransactions from '../containers/VisibleTransactions'
 import ControlPanel from './controlPanel'
 import AccountsList from './accountsList'
 
@@ -59,7 +58,7 @@ class DashBoard extends Component {
                     Accounts: <AccountsList />
                 </div>
                 <p>
-                    Transactions: <TransactionsList transactions={this.state.transactions} />
+                    Transactions: <VisibleTransactions />
                 </p>
             </div>
         )

@@ -3,7 +3,6 @@ import TransactionsList from '../components/transactionsList'
 import { VisibilityFilters } from '../actions'
 
 const getVisibleTransactions = (transactions, filter) => {
-    console.log(transactions);
     switch (filter) {
         case VisibilityFilters.SHOW_ALL:
             return transactions
@@ -11,14 +10,23 @@ const getVisibleTransactions = (transactions, filter) => {
             return transactions.filter(t => {
                 return t.category === 'BANK_FEE'
             })
-        default: 
+        default:
             throw new Error('Unknown filter: ' + filter)
     }
 }
 
-const mapStateToProps = state => ({
-    transactions: getVisibleTransactions(state.transactions, state.visibilityFilters)
-})
+const mapStateToProps = state => {
+    if(state.initialTransactions) {
+        return ({
+            transactions: getVisibleTransactions(state.initialTransactions, state.visibilityFilter)
+        })
+    }
+    else {
+        return ({
+            transactions: state.initialTransactions
+        })
+    }
+}
 
 export default connect(
     mapStateToProps
