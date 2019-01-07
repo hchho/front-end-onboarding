@@ -12,8 +12,3 @@ export const fetchCategories = categories => ({
     type: 'FETCH_CATEGORIES',
     payload: categories
 })
-
-export const VisibilityFilters = {
-    SHOW_ALL: 'SHOW_ALL',
-    SHOW_BANK_FEE: 'SHOW_BANK_FEE'
-}

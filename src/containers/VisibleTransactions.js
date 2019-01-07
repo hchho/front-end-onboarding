@@ -1,14 +1,13 @@
 import { connect } from 'react-redux'
 import TransactionsList from '../components/transactionsList'
-import { VisibilityFilters } from '../actions'
 
 const getVisibleTransactions = (transactions, filter) => {
     switch (filter) {
-        case VisibilityFilters.SHOW_ALL:
+        case 'SHOW_ALL':
             return transactions
-        case VisibilityFilters.SHOW_BANK_FEE:
+        case filter:
             return transactions.filter(t => {
-                return t.category === 'BANK_FEE'
+                return t.category === filter
             })
         default:
             throw new Error('Unknown filter: ' + filter)
