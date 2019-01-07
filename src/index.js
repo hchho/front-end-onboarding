@@ -26,4 +26,10 @@ fetch('http://demo1124891.mockable.io/transactions', { mode: 'cors' })
     store.dispatch({ type: 'INITIALIZE_TRANSACTIONS', payload: data.transactions })
 })
 
+fetch('http://demo1124891.mockable.io/categories', { mode: 'cors' })
+.then(res => res.json())
+.then(data => {
+    store.dispatch({ type: 'FETCH_CATEGORIES', payload: data.categories })
+})
+
 serviceWorker.unregister();

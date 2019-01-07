@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      info: null
+      info: null,
+      categories: []
     }
   }
 
