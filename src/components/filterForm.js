@@ -4,6 +4,9 @@ import CheckBoxContainer from './form-components/baseCheckBoxContainer'
 import CheckBox from './form-components/baseCheckBox'
 import PropTypes from 'prop-types'
 
+const ASCENDING_DATE = 'ascending'
+const DESCENDING_DATE = 'descending'
+
 class FilterForm extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +15,8 @@ class FilterForm extends Component {
             accounts: [],
             activeAccounts: 'SHOW_ALL',
             activeCategories: new Map(),
-            selectAllCategories: true
+            selectAllCategories: true,
+            sortDirection: ASCENDING_DATE
         }
     }
 
@@ -40,13 +44,17 @@ class FilterForm extends Component {
         this.setState(prevState => ({ selectAllCategories: !this.state.selectAllCategories }))
     }
 
+    handleSortByDateChange = e => {
+        this.setState({ sortDirection: e.target.value })
+    }
+
     render() {
         if ((this.state.categories !== []) && this.state.accounts) {
             return (
                 <form>
                     <div class="form-group">
                         <label>Accounts: </label>
-                        <DropDownMenu items={this.state.accounts.map(account => ({ key: account.accountId, option: account.accountName }))} onChange={this.handleAccountChange} />
+                        <DropDownMenu items={this.state.accounts.map(account => ({ value: account.accountId, option: account.accountName }))} onChange={this.handleAccountChange} defaultOption='SHOW_ALL' />
                     </div>
                     <div class="form-group">
                         <label>Categories: </label>
@@ -55,6 +63,10 @@ class FilterForm extends Component {
                         <CheckBox name='SELECT_ALL_CATEGORIES' checked={this.state.selectAllCategories} onChange={this.handleSelectAllCategories} />
                         </label>
                         <CheckBoxContainer isDisabled={this.state.selectAllCategories ? 'disabled' : null} items={this.state.categories.map(category => ({ name: category }))} checkedItems={this.state.activeCategories} onChange={this.handleCategoryChange} />
+                    </div>
+                    <div class="form-group">
+                    <label>Sort by date: </label>
+                        <DropDownMenu items={[{ value: ASCENDING_DATE, option: 'newest to oldest'}, {value: DESCENDING_DATE, option: 'oldest to newest'}]} onChange={this.handleSortByDateChange} />
                     </div>
                     <input type="button" value="Submit" onClick={() => this.props.onClick(this.state)} />
                 </form>

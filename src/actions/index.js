@@ -3,6 +3,11 @@ export const setVisibilityFilter = filter => ({
     filter
 })
 
+export const sortTransactions = sortDirection => ({
+    type: 'SORT_TRANSACTIONS',
+    sortDirection
+})
+
 export const initializeTransactions = transactions => ({
     type: 'INITIALIZE_TRANSACTIONS',
     payload: transactions

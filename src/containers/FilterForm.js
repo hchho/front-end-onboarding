@@ -8,12 +8,8 @@ const mapStateToProps = state => {
     })
 }
 
-const mapDispatchProps = (dispatch, ownProps) => {
-    return ({onClick: (data) => {
-        // return dispatch(setVisibilityFilter(data.activeCategories))
-        return dispatch(setVisibilityFilter(data))
-    }
-    })
+const mapDispatchProps = (dispatch) => {
+    return ({onClick: (data) => dispatch(setVisibilityFilter(data))})
 }
 
 export default connect(
