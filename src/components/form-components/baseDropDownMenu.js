@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import DropDownOption from './baseDropDownOption'
 
@@ -18,7 +18,10 @@ const DropDownMenu = ({ items, onChange }) => {
 }
 
 DropDownMenu.propTypes = {
-    items: PropTypes.node.isRequired,
+    items: PropTypes.shape({
+        key: PropTypes.string.isRequired,
+        option: PropTypes.string.isRequired,
+    }),
     onChange: PropTypes.func.isRequired
 }
 
