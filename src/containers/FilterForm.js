@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchProps = (dispatch, ownProps) => {
     return ({onClick: (data) => {
-        return dispatch(setVisibilityFilter(data.activeAccounts))
+        // return dispatch(setVisibilityFilter(data.activeCategories))
+        return dispatch(setVisibilityFilter(data))
     }
     })
 }

@@ -7,26 +7,25 @@ const getVisibleTransactions = (transactions, filter) => {
             return transactions
         case filter:
             return transactions.filter(t => {
-                return t.category === filter || filterAccounts(filter, t.accountId)
-            })
+                return filterAccounts(filter.activeAccounts, t.accountId) && (filter.selectAllCategories || filter.activeCategories.has(t.category))})
         default:
             throw new Error('Unknown filter: ' + filter)
     }
 }
 
 const filterAccounts = (filter, accId) => {
-    switch(filter) {
+    switch (filter) {
         case 'SHOW_ALL':
             return true
         case filter:
             return accId === filter
-        default: 
+        default:
             throw new Error('Unknown account filter')
     }
 }
 
 const mapStateToProps = state => {
-    if(state.initialTransactions) {
+    if (state.initialTransactions) {
         return ({
             transactions: getVisibleTransactions(state.initialTransactions, state.visibilityFilter)
         })
