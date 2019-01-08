@@ -21,15 +21,19 @@ ReactDOM.render(
 // Learn more about service workers: http://bit.ly/CRA-PWA
 
 fetch('http://demo1124891.mockable.io/transactions', { mode: 'cors' })
-.then(res => res.json())
-.then(data => {
-    store.dispatch({ type: 'INITIALIZE_TRANSACTIONS', payload: data.transactions })
-})
+    .then(res => res.json())
+    .then(data => {
+        store.dispatch({ type: 'INITIALIZE_TRANSACTIONS', payload: data.transactions })
+    })
 
 fetch('http://demo1124891.mockable.io/categories', { mode: 'cors' })
-.then(res => res.json())
-.then(data => {
-    store.dispatch({ type: 'FETCH_CATEGORIES', payload: data.categories })
-})
+    .then(res => res.json())
+    .then(data => {
+        store.dispatch({ type: 'FETCH_CATEGORIES', payload: data.categories })
+    })
+
+fetch('https://demo1124891.mockable.io/accounts', { mode: 'cors' })
+    .then(res => res.json())
+    .then(data => store.dispatch({ type: 'FETCH_ACCOUNTS', payload: data.accounts }))
 
 serviceWorker.unregister();

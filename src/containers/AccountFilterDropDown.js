@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import { setVisibilityFilter } from '../actions'
-import DropDownMenu from '../components/baseDropDownMenu'
+import DropDownMenu from '../components/form-components/baseDropDownMenu'
 
 const mapStateToProps = state => {
-    if(state.fetchCategories) {
+    if(state.fetchAccounts) {
         return ({
-            children: state.fetchCategories
+            children: state.fetchAccounts
         })
     }
     else {

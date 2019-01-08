@@ -8,7 +8,12 @@ export const initializeTransactions = transactions => ({
     payload: transactions
 })
 
-export const fetchCategories = categories => ({
+export const categories = categories => ({
     type: 'FETCH_CATEGORIES',
     payload: categories
+})
+
+export const accounts = accounts => ({
+    type: 'FETCH_ACCOUNTS',
+    payload: accounts
 })

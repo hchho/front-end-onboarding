@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import VisibleTransactions from '../containers/VisibleTransactions'
-import ControlPanel from './controlPanel'
+import FilterPanel from './filterPanel'
 import AccountsList from './accountsList'
 
 const ASCENDING_DATE = 'ascending'
@@ -35,7 +35,7 @@ class DashBoard extends Component {
     render() {
         return (
             <div className="DashBoard">
-                <ControlPanel />
+                <FilterPanel />
                 <p>
                     Earliest transaction date: {this.state.transactionDetails.earliestTransactionDate}
                 </p>

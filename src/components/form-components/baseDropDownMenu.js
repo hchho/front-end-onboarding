@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DropDownOption from './baseDropDownOption'
 
-const DropDownMenu = ({ children, onChange }) => {
-    if (children) {
+const DropDownMenu = ({ items, onChange }) => {
+    if (items) {
         return (
             <select
                 onChange={onChange}
             >
-            <DropDownOption index='-1' option='SHOW_ALL' />
-            {children.map((child, index) => (<DropDownOption index={index} option={child} />))}
+                <DropDownOption index='-1' option='SHOW_ALL' />
+                {items.map((item, index) => (<DropDownOption index={index} value={item.key} option={item.option} />))}
             </select>
         )
     } else {
@@ -18,7 +18,7 @@ const DropDownMenu = ({ children, onChange }) => {
 }
 
 DropDownMenu.propTypes = {
-    children: PropTypes.node.isRequired,
+    items: PropTypes.node.isRequired,
     onChange: PropTypes.func.isRequired
 }
 
