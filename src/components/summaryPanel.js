@@ -2,24 +2,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Panel from './styled/Panel'
 import PanelHeader from './base/PanelHeader'
+import PanelContentWrapper from './styled/PanelContentWrapper'
 
-const SummaryPanel = ({ ...details }) => {
+const SummaryPanel = ({ header, ...details }) => {
     if (details) {
         return (
             <Panel>
-                <PanelHeader header='Summary' />
-                <p>
-                    Earliest transaction date: {details.earliestTransactionDate}
-                </p>
-                <p>
-                    Latest transaction date: {details.latestTransactionDate}
-                </p>
-                <p>
-                    Days span by transaction: {details.daysSpanByTransaction}
-                </p>
-                <p>
-                    Total transactions: {details.transactionCount}
-                </p>
+                <PanelHeader header={header} />
+                <PanelContentWrapper>
+                    <p>
+                        Earliest transaction date: {details.earliestTransactionDate}
+                    </p>
+                    <p>
+                        Latest transaction date: {details.latestTransactionDate}
+                    </p>
+                    <p>
+                        Days span by transaction: {details.daysSpanByTransaction}
+                    </p>
+                    <p>
+                        Total transactions: {details.transactionCount}
+                    </p>
+                </PanelContentWrapper>
             </Panel>
         )
     } else {

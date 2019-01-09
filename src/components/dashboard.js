@@ -8,9 +8,9 @@ class DashBoard extends Component {
     render() {
         return (
             <StyledDashBoard>
-                <SummaryPanel {...this.props} />
-                <AccountsPanel />
-                <TransactionPanel />
+                <SummaryPanel header='Summary' {...this.props} />
+                <AccountsPanel header='Accounts' />
+                <TransactionPanel header='Transactions' />
             </StyledDashBoard>
         )
     }

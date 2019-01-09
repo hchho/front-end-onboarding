@@ -4,12 +4,11 @@ import VisibleTransactions from '../containers/VisibleTransactions'
 import FilterPanel from './filterPanel'
 import PanelHeader from './base/PanelHeader'
 
-const TransactionPanel = ({ }) => (
+const TransactionPanel = ({ header }) => (
     <Panel>
-        <PanelHeader header='Transactions' />
+        <PanelHeader header={header}/>
         <FilterPanel />
         <VisibleTransactions />
-
     </Panel>
 )
 

@@ -20,7 +20,7 @@ class AccountsList extends Component {
         if (this.state.accounts) {
             return (
                 <Panel className="Accounts-List">
-                <PanelHeader header='Accounts' />
+                <PanelHeader header={this.props.header} />
                     <ul>
                         {this.state.accounts.map(acc => {
                             return (
