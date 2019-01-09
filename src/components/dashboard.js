@@ -25,7 +25,7 @@ class DashBoard extends Component {
                     Days span by transaction: {this.state.transactionDetails.daysSpanByTransaction}
                 </p>
                 <p>
-                    Transaction count: {this.state.transactionDetails.transactionCount}
+                    Total transactions: {this.state.transactionDetails.transactionCount}
                 </p>
                 <div>
                     {/* Accounts: <AccountsList /> */}

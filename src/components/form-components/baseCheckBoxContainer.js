@@ -1,7 +1,6 @@
 import React from 'react'
 import CheckBox from './baseCheckBox'
 
-
 const CheckBoxContainer = ({ isDisabled = null, items, checkedItems, onChange }) => (
     <div className="checkbox-container">
         {

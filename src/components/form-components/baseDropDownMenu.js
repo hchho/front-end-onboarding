@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DropDownOption from './baseDropDownOption'
 
-const DropDownMenu = ({ items, onChange, defaultOption = null }) => {
+const DropDownMenu = ({ selected, items, onChange }) => {
     if (items) {
         return (
             <select
                 onChange={onChange}
+                value={selected}
             >
-                {defaultOption ? <DropDownOption index='-1' option={defaultOption} /> : null}
                 {items.map((item, index) => (<DropDownOption index={index} value={item.value} option={item.option} />))}
             </select>
         )

@@ -6,6 +6,22 @@ import PropTypes from 'prop-types'
 
 const ASCENDING_DATE = 'ascending'
 const DESCENDING_DATE = 'descending'
+const ACTIVE_CATEGORIES_MAP = new Map()
+const SORT_BY_DATE_OPTIONS = [
+    { 
+        value: ASCENDING_DATE, 
+        option: 'newest to oldest' 
+    }, 
+    { 
+        value: DESCENDING_DATE, 
+        option: 'oldest to newest' 
+    }]
+
+const DEFAULT_FILTERS = {
+    activeAccounts: 'SHOW_ALL',
+    selectAllCategories: true,
+    sortDirection: ASCENDING_DATE
+}
 
 class FilterForm extends Component {
     constructor(props) {
@@ -13,10 +29,8 @@ class FilterForm extends Component {
         this.state = {
             categories: [],
             accounts: [],
-            activeAccounts: 'SHOW_ALL',
             activeCategories: new Map(),
-            selectAllCategories: true,
-            sortDirection: ASCENDING_DATE
+            ...DEFAULT_FILTERS
         }
     }
 
@@ -48,13 +62,17 @@ class FilterForm extends Component {
         this.setState({ sortDirection: e.target.value })
     }
 
+    resetFilterForm = e => {
+        this.setState({ ...DEFAULT_FILTERS, activeCategories: new Map() })
+    }
+
     render() {
         if ((this.state.categories !== []) && this.state.accounts) {
             return (
                 <form>
                     <div class="form-group">
                         <label>Accounts: </label>
-                        <DropDownMenu items={this.state.accounts.map(account => ({ value: account.accountId, option: account.accountName }))} onChange={this.handleAccountChange} defaultOption='SHOW_ALL' />
+                        <DropDownMenu selected={this.state.activeAccounts} items={[{value: 'SHOW_ALL', option: 'SHOW_ALL'}, ...this.state.accounts.map(account => ({ value: account.accountId, option: account.accountName }))]} onChange={this.handleAccountChange} />
                     </div>
                     <div class="form-group">
                         <label>Categories: </label>
@@ -65,9 +83,10 @@ class FilterForm extends Component {
                         <CheckBoxContainer isDisabled={this.state.selectAllCategories ? 'disabled' : null} items={this.state.categories.map(category => ({ name: category }))} checkedItems={this.state.activeCategories} onChange={this.handleCategoryChange} />
                     </div>
                     <div class="form-group">
-                    <label>Sort by date: </label>
-                        <DropDownMenu items={[{ value: ASCENDING_DATE, option: 'newest to oldest'}, {value: DESCENDING_DATE, option: 'oldest to newest'}]} onChange={this.handleSortByDateChange} />
+                        <label>Sort by date: </label>
+                        <DropDownMenu selected={this.state.sortDirection} items={SORT_BY_DATE_OPTIONS} onChange={this.handleSortByDateChange} />
                     </div>
+                    <input type="button" value="Reset" onClick={this.resetFilterForm} />
                     <input type="button" value="Submit" onClick={() => this.props.onClick(this.state)} />
                 </form>
             )

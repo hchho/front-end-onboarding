@@ -5,15 +5,18 @@ import Transaction from './transaction'
 const TransactionsList = ({ transactions }) => {
     if (transactions) {
         return (
-            <ul>
-                { transactions.map(function (transaction, index) {
-                    return (
-                        <li key={transaction.transactionId}>
-                            <Transaction info={transaction} />
-                        </li>
-                    )
-                })}
-            </ul>
+            <div className="TransactionsList">
+                <span>Number of transactions: { transactions.length }</span>
+                <ul>
+                    {transactions.map(function (transaction, index) {
+                        return (
+                            <li key={transaction.transactionId}>
+                                <Transaction info={transaction} />
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         )
     } else {
         return (<span>Loading...</span>)
