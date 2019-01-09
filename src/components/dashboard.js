@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VisibleTransactions from '../containers/VisibleTransactions'
 import FilterPanel from './filterPanel'
 import AccountsList from './accountsList'
+import StyledDashBoard from './styled/DashBoard';
 
 class DashBoard extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class DashBoard extends Component {
 
     render() {
         return (
-            <div className="DashBoard">
+            <StyledDashBoard>
                 <FilterPanel />
                 <p>
                     Earliest transaction date: {this.state.transactionDetails.earliestTransactionDate}
@@ -28,12 +29,12 @@ class DashBoard extends Component {
                     Total transactions: {this.state.transactionDetails.transactionCount}
                 </p>
                 <div>
-                    {/* Accounts: <AccountsList /> */}
+                    Accounts: <AccountsList />
                 </div>
                 <p>
                     Transactions: <VisibleTransactions />
                 </p>
-            </div>
+            </StyledDashBoard>
         )
     }
 }

@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import DropDownMenu from './form-components/baseDropDownMenu'
 import CheckBoxContainer from './form-components/baseCheckBoxContainer'
 import CheckBox from './form-components/baseCheckBox'
 import PropTypes from 'prop-types'
 
+const StyledForm = styled.form`
+    color: blue
+`;
+
 const ASCENDING_DATE = 'ascending'
 const DESCENDING_DATE = 'descending'
-const ACTIVE_CATEGORIES_MAP = new Map()
 const SORT_BY_DATE_OPTIONS = [
     { 
         value: ASCENDING_DATE, 
@@ -69,7 +73,7 @@ class FilterForm extends Component {
     render() {
         if ((this.state.categories !== []) && this.state.accounts) {
             return (
-                <form>
+                <StyledForm>
                     <div class="form-group">
                         <label>Accounts: </label>
                         <DropDownMenu selected={this.state.activeAccounts} items={[{value: 'SHOW_ALL', option: 'SHOW_ALL'}, ...this.state.accounts.map(account => ({ value: account.accountId, option: account.accountName }))]} onChange={this.handleAccountChange} />
@@ -88,7 +92,7 @@ class FilterForm extends Component {
                     </div>
                     <input type="button" value="Reset" onClick={this.resetFilterForm} />
                     <input type="button" value="Submit" onClick={() => this.props.onClick(this.state)} />
-                </form>
+                </StyledForm>
             )
         } else {
             return (

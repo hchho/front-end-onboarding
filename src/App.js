@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import DashBoard from './components/dashboard'
+import StyledApp from './components/styled/AppContainer'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      info: null,
-      categories: []
+      info: null
     }
   }
 
@@ -25,9 +25,9 @@ class App extends Component {
       return <div>Loading...</div>
     }
     return (
-      <div className="container">
+      <StyledApp>
         <DashBoard { ...this.state.info} />
-      </div>
+      </StyledApp>
     );
   }
 }
