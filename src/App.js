@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import DashBoard from './components/dashboard'
 import StyledApp from './components/styled/AppContainer'
+import StyledHeader from './components/styled/Header'
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +27,10 @@ class App extends Component {
     }
     return (
       <StyledApp>
-        <DashBoard { ...this.state.info} />
+        <StyledHeader>
+          <h1>GumQuat</h1>
+        </StyledHeader>
+        <DashBoard {...this.state.info} />
       </StyledApp>
     );
   }
