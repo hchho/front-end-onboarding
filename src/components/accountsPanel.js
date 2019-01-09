@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import Panel from './styled/Panel'
 
+import PanelHeader from './base/PanelHeader'
 class AccountsList extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +19,8 @@ class AccountsList extends Component {
     render() {
         if (this.state.accounts) {
             return (
-                <div className="Accounts-List">
+                <Panel className="Accounts-List">
+                <PanelHeader header='Accounts' />
                     <ul>
                         {this.state.accounts.map(acc => {
                             return (
@@ -47,7 +50,7 @@ class AccountsList extends Component {
                             )
                         })}
                     </ul>
-                </div>
+                </Panel>
             )
         }
         return (<span>Loading...</span>)

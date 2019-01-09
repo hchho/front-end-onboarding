@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Panel from './styled/Panel'
+import PanelHeader from './base/PanelHeader'
 
 const SummaryPanel = ({ ...details }) => {
-    console.log(details)
     if (details) {
         return (
-            <div>
+            <Panel>
+                <PanelHeader header='Summary' />
                 <p>
                     Earliest transaction date: {details.earliestTransactionDate}
                 </p>
@@ -18,7 +20,7 @@ const SummaryPanel = ({ ...details }) => {
                 <p>
                     Total transactions: {details.transactionCount}
                 </p>
-            </div>
+            </Panel>
         )
     } else {
         return (<span>Loading summary...</span>)

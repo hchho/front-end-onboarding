@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
-import VisibleTransactions from '../containers/VisibleTransactions'
-import FilterPanel from './filterPanel'
-import AccountsList from './accountsList'
+import AccountsPanel from './accountsPanel'
 import SummaryPanel from './summaryPanel'
+import TransactionPanel from './transactionsPanel'
 import StyledDashBoard from './styled/DashBoard';
 
 class DashBoard extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <StyledDashBoard>
                 <SummaryPanel {...this.props} />
-                <div>
-                    Accounts: <AccountsList />
-                </div>
-                <FilterPanel />
-                <p>
-                    Transactions: <VisibleTransactions />
-                </p>
+                <AccountsPanel />
+                <TransactionPanel />
             </StyledDashBoard>
         )
     }
