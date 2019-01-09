@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import DropDownMenu from './form-components/baseDropDownMenu'
-import CheckBoxContainer from './form-components/baseCheckBoxContainer'
-import CheckBox from './form-components/baseCheckBox'
+import DropDownMenu from './base/form-components/baseDropDownMenu'
+import CheckBoxContainer from './base/form-components/baseCheckBoxContainer'
+import CheckBox from './base/form-components/baseCheckBox'
 import PropTypes from 'prop-types'
 
 const StyledForm = styled.form`
