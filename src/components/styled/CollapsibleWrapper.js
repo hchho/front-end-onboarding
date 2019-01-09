@@ -12,7 +12,7 @@ const CollapsibleWrapper = styled(PanelContentWrapper)`
 
     &.hidden {
         opacity: 0.25;
-        max-height: 50px;
+        max-height: 30px;
         transition: all 0.25s ease-in;
         overflow: hidden
     }

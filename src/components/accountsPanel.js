@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Panel from './styled/Panel'
 import CollapsibleWrapper from './styled/CollapsibleWrapper'
-import CollapseButton from './styled/CollapseButton'
-import PanelHeader from './base/PanelHeader'
 import CollapsiblePanelHeader from './base/CollapsiblePanelHeader'
+import SecondaryButton from './styled/SecondaryButton'
+
 class AccountsList extends Component {
     constructor(props) {
         super(props);
@@ -59,7 +59,7 @@ class AccountsList extends Component {
                             })}
                         </ul>
                     </CollapsibleWrapper>
-                    <input type="button" onClick={this.toggleWrapper} value={this.state.accountsVisible? 'See less' : 'See more'} />
+                    <SecondaryButton onClick={this.toggleWrapper}>{this.state.accountsVisible? 'See less' : 'See more'}</SecondaryButton>
                 </Panel>
             )
         }

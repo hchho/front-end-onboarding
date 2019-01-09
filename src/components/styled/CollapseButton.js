@@ -20,6 +20,14 @@ const CollapseButton = styled.button`
     :focus {
         outline: 0;
     }
+
+    :hover {
+        color: #E8DB7D
+    }
+
+    :active {
+        color: #558C8C
+    }
 `;
 
 export default CollapseButton
