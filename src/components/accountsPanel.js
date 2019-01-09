@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import Panel from './styled/Panel'
 import CollapsibleWrapper from './styled/CollapsibleWrapper'
-
+import CollapseButton from './styled/CollapseButton'
 import PanelHeader from './base/PanelHeader'
 class AccountsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             accounts: null,
-            accountsVisibility: 'hidden'
+            accountsVisible: false
         }
     }
 
@@ -19,11 +19,7 @@ class AccountsList extends Component {
     }
 
     expandWrapper = e => {
-        if (this.state.accountsVisibility === 'hidden') {
-            this.setState({ accountsVisibility: 'visible' })
-        } else {
-            this.setState({ accountsVisibility: 'hidden' })
-        }
+        this.setState(prevState => ({ accountsVisible: !prevState.accountsVisible}))
     }
 
     render() {
@@ -31,7 +27,7 @@ class AccountsList extends Component {
             return (
                 <Panel className="Accounts-List">
                     <PanelHeader header={this.props.header} />
-                    <CollapsibleWrapper className={this.state.accountsVisibility}>
+                    <CollapsibleWrapper className={this.state.accountsVisible? 'visible': 'hidden'}>
                         <ul>
                             {this.state.accounts.map(acc => {
                                 return (
@@ -62,8 +58,7 @@ class AccountsList extends Component {
                             })}
                         </ul>
                     </CollapsibleWrapper>
-
-                    <input type="button" onClick={this.expandWrapper} value="...See more" />
+                    <CollapseButton className={this.state.accountsVisible? 'active':'collapsible'} onClick={this.expandWrapper}></CollapseButton>
                 </Panel>
             )
         }
