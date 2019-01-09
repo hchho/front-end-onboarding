@@ -1,19 +1,24 @@
 import styled from 'styled-components'
 
 const CollapseButton = styled.button`
-    background-color: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    font-size: 1em;
+    color: white;
+
     :after {
         float: right;
     }
 
-    &.collapsible:after {
-        content: '\\02795'; /* Unicode character for "plus" sign (+) */
-        font-size: 13px;
-        color: black;
-    }
-  
-    &.active:after {
-        content: '\\2796'; /* Unicode character for "minus" sign (-) */
+    :focus {
+        outline: 0;
     }
 `;
 

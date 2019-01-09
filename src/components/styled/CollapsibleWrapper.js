@@ -7,13 +7,13 @@ const CollapsibleWrapper = styled(PanelContentWrapper)`
     &.visible {
         opacity: 1;
         max-height: 1000px;
-        transition: max-height 0.25s ease-out;
+        transition: all 0.25s ease-out;
     }
 
     &.hidden {
         opacity: 0.25;
         max-height: 50px;
-        transition: max-height 0.4s ease-in;
+        transition: all 0.25s ease-in;
         overflow: hidden
     }
 `;

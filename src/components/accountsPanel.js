@@ -3,6 +3,7 @@ import Panel from './styled/Panel'
 import CollapsibleWrapper from './styled/CollapsibleWrapper'
 import CollapseButton from './styled/CollapseButton'
 import PanelHeader from './base/PanelHeader'
+import CollapsiblePanelHeader from './base/CollapsiblePanelHeader'
 class AccountsList extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +19,7 @@ class AccountsList extends Component {
             .then(data => this.setState({ accounts: data.accounts }))
     }
 
-    expandWrapper = e => {
+    toggleWrapper = e => {
         this.setState(prevState => ({ accountsVisible: !prevState.accountsVisible}))
     }
 
@@ -26,7 +27,7 @@ class AccountsList extends Component {
         if (this.state.accounts) {
             return (
                 <Panel className="Accounts-List">
-                    <PanelHeader header={this.props.header} />
+                    <CollapsiblePanelHeader header={this.props.header} collapsible={{ classNameToggle: this.state.accountsVisible, onClick: this.toggleWrapper, buttonText: this.state.accountsVisible? '-':'+' } } />
                     <CollapsibleWrapper className={this.state.accountsVisible? 'visible': 'hidden'}>
                         <ul>
                             {this.state.accounts.map(acc => {
@@ -58,7 +59,7 @@ class AccountsList extends Component {
                             })}
                         </ul>
                     </CollapsibleWrapper>
-                    <CollapseButton className={this.state.accountsVisible? 'active':'collapsible'} onClick={this.expandWrapper}></CollapseButton>
+                    <input type="button" onClick={this.toggleWrapper} value={this.state.accountsVisible? 'See less' : 'See more'} />
                 </Panel>
             )
         }
