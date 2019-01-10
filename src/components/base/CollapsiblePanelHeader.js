@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import StyledPanelHeader from '../styled/PanelHeader'
-import CollapseButton from '../styled/CollapseButton'
+import CollapsePanelButton from '../styled/CollapsePanelButton'
 
 const CollapsiblePanelHeader = ({ header, collapsible }) => (
     <StyledPanelHeader>
         {header}
-        <CollapseButton className={collapsible.classNameToggle? 'active' : 'collapsible'} onClick={collapsible.onClick}>{collapsible.buttonText}</CollapseButton>
+        <CollapsePanelButton className={collapsible.classNameToggle? 'active' : 'collapsible'} onClick={collapsible.onClick}>{collapsible.buttonText}</CollapsePanelButton>
     </StyledPanelHeader>
 )
 

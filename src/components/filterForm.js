@@ -1,24 +1,21 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import DropDownMenu from './base/form-components/baseDropDownMenu'
 import CheckBoxContainer from './base/form-components/baseCheckBoxContainer'
 import CheckBox from './base/form-components/baseCheckBox'
 import PropTypes from 'prop-types'
-
-const StyledForm = styled.form`
-    color: blue
-`;
+import Form from './styled/Form'
+import PrimaryButton from './styled/PrimaryButton'
 
 const ASCENDING_DATE = 'ascending'
 const DESCENDING_DATE = 'descending'
 const SORT_BY_DATE_OPTIONS = [
-    { 
-        value: ASCENDING_DATE, 
-        option: 'newest to oldest' 
-    }, 
-    { 
-        value: DESCENDING_DATE, 
-        option: 'oldest to newest' 
+    {
+        value: ASCENDING_DATE,
+        option: 'NEWEST to OLDEST'
+    },
+    {
+        value: DESCENDING_DATE,
+        option: 'OLDEST to NEWEST'
     }]
 
 const DEFAULT_FILTERS = {
@@ -73,26 +70,29 @@ class FilterForm extends Component {
     render() {
         if ((this.state.categories !== []) && this.state.accounts) {
             return (
-                <StyledForm>
-                    <div class="form-group">
+                <Form>
+                    <div className="form-group">
                         <label>Accounts: </label>
-                        <DropDownMenu selected={this.state.activeAccounts} items={[{value: 'SHOW_ALL', option: 'SHOW_ALL'}, ...this.state.accounts.map(account => ({ value: account.accountId, option: account.accountName }))]} onChange={this.handleAccountChange} />
+                        <DropDownMenu selected={this.state.activeAccounts} items={[{ value: 'SHOW_ALL', option: 'SHOW_ALL' }, ...this.state.accounts.map(account => ({ value: account.accountId, option: account.accountName }))]} onChange={this.handleAccountChange} />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Categories: </label>
-                        <label>
-                            Select All
-                        <CheckBox name='SELECT_ALL_CATEGORIES' checked={this.state.selectAllCategories} onChange={this.handleSelectAllCategories} />
-                        </label>
-                        <CheckBoxContainer isDisabled={this.state.selectAllCategories ? 'disabled' : null} items={this.state.categories.map(category => ({ name: category }))} checkedItems={this.state.activeCategories} onChange={this.handleCategoryChange} />
+                        <div className="check-container">
+                            <div className={this.state.selectAllCategories? 'form-check': 'inactive'}>
+                                SELECT ALL
+                            <CheckBox name='SELECT_ALL_CATEGORIES' checked={this.state.selectAllCategories} onChange={this.handleSelectAllCategories} />
+                            </div>
+                            <CheckBoxContainer className={this.state.selectAllCategories ? 'inactive' : ''} isDisabled={this.state.selectAllCategories ? 'disabled' : null} items={this.state.categories.map(category => ({ name: category }))} checkedItems={this.state.activeCategories} onChange={this.handleCategoryChange} />
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Sort by date: </label>
                         <DropDownMenu selected={this.state.sortDirection} items={SORT_BY_DATE_OPTIONS} onChange={this.handleSortByDateChange} />
                     </div>
                     <input type="button" value="Reset" onClick={this.resetFilterForm} />
-                    <input type="button" value="Submit" onClick={() => this.props.onClick(this.state)} />
-                </StyledForm>
+                    <PrimaryButton type="button" onClick={() => this.props.onClick(this.state)}>Submit</PrimaryButton>
+                    {/* <input type="button" value="Submit" onClick={() => this.props.onClick(this.state)} /> */}
+                </Form>
             )
         } else {
             return (

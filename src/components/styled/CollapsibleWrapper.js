@@ -10,11 +10,18 @@ const CollapsibleWrapper = styled(PanelContentWrapper)`
         transition: all 0.25s ease-out;
     }
 
-    &.hidden {
+    &.hidden, &.preview {
         opacity: 0.25;
-        max-height: 30px;
         transition: all 0.25s ease-in;
         overflow: hidden
+    }
+    
+    &.hidden {
+        max-height: 0px;
+    }
+
+    &.preview {
+        max-height: 30px;
     }
 `;
 

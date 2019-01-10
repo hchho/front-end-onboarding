@@ -28,7 +28,7 @@ class AccountsList extends Component {
             return (
                 <Panel className="Accounts-List">
                     <CollapsiblePanelHeader header={this.props.header} collapsible={{ classNameToggle: this.state.accountsVisible, onClick: this.toggleWrapper, buttonText: this.state.accountsVisible? '-':'+' } } />
-                    <CollapsibleWrapper className={this.state.accountsVisible? 'visible': 'hidden'}>
+                    <CollapsibleWrapper className={this.state.accountsVisible? 'visible': 'preview'} >
                         <ul>
                             {this.state.accounts.map(acc => {
                                 return (

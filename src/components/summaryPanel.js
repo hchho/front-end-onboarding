@@ -31,12 +31,13 @@ const SummaryPanel = ({ header, ...details }) => {
 }
 
 SummaryPanel.propTypes = {
+    header: PropTypes.string.isRequired,
     details: PropTypes.shape({
         earliestTransactionDate: PropTypes.string.isRequired,
         latestTransactionDate: PropTypes.string.isRequired,
         daysSpanByTransaction: PropTypes.number.isRequired,
         transactionCount: PropTypes.number.isRequired
-    }).isRequired
+    })
 }
 
 export default SummaryPanel
