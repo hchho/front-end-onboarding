@@ -6,7 +6,7 @@ const Form = styled.form`
     select {
         background-color: white;
         height: 24px;
-        width: 200px;
+        width: 300px;
     }
 
     select:focus {

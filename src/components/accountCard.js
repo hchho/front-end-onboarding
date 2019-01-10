@@ -48,6 +48,15 @@ const CardDetail = styled.div`
         justify-content: center;
         align-items: center;
     }
+
+    &.details > p {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &.details > p > span {
+        width: 100px;
+    }
 `;
 
 const AccountCard = ({ ...acc }) => (
@@ -57,17 +66,13 @@ const AccountCard = ({ ...acc }) => (
         <CardWrapper>
             <CardDetail className="details">
                 <p>
-                    
+                    <span>Account no.:</span><b>{acc.accountNumber}</b>
                 </p>
                 <p>
-                    Account no.: {acc.accountNumber}
-                </p>
-
-                <p>
-                    Institution: {acc.institutionName}
+                    <span>Institution:</span><b>{acc.institutionName}</b>
                 </p>
                 <p>
-                    Transit no.: {acc.transitNumber}
+                    <span>Transit no.:</span> <b>{acc.transitNumber}</b>
                 </p>
             </CardDetail>
             <CardDetail className="important-details">
