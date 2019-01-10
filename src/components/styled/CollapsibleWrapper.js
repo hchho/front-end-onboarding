@@ -21,7 +21,7 @@ const CollapsibleWrapper = styled(PanelContentWrapper)`
     }
 
     &.preview {
-        max-height: 30px;
+        max-height: 50px;
     }
 `;
 

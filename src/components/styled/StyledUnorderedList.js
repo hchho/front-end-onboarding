@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 const StyledUL = styled.ul`
     list-style-type: none;
-    padding-left: 0;
+    padding: 0px;
+    margin: 0px;
 `;
 
 export default StyledUL

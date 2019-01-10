@@ -1,31 +1,85 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import StyledCard from './styled/StyledCard'
+import styled from 'styled-components'
+
+const StyledAccountCard = styled(StyledCard)`
+    span.minor {
+        color: #666;
+        font-size: 0.75em;
+    }
+`;
+
+const CircleDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    background: #558C8C;
+    background-image: linear-gradient(#E8DB7D, #558C8C);
+    color: white;
+    width: 120px;
+    height: 120px;
+     
+    span.minor-content {
+        font-size: 0.75em;
+    }
+
+    span.highlight {
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+`;
+
+const CardWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+`;
+
+const CardDetail = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    &.important-details {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`;
 
 const AccountCard = ({ ...acc }) => (
-    <StyledCard>
-        <p>
-            Account ID: {acc.accountId}
-        </p>
-        <p>
-            Account name: {acc.accountName}
-        </p>
-        <p>
-            Account no.: {acc.accountNumber}
-        </p>
-        <p>
-            Balance: {acc.balance}
-        </p>
-        <p>
-            Balance Updated: {acc.balanceUpdated}
-        </p>
-        <p>
-            Institution: {acc.institutionName}
-        </p>
-        <p>
-            Transit no.: {acc.transitNumber}
-        </p>
-    </StyledCard>
+    <StyledAccountCard>
+        <h3>{acc.accountName}</h3>
+        <span className="minor">ID: {acc.accountId}</span>
+        <CardWrapper>
+            <CardDetail className="details">
+                <p>
+                    
+                </p>
+                <p>
+                    Account no.: {acc.accountNumber}
+                </p>
+
+                <p>
+                    Institution: {acc.institutionName}
+                </p>
+                <p>
+                    Transit no.: {acc.transitNumber}
+                </p>
+            </CardDetail>
+            <CardDetail className="important-details">
+                <CircleDiv className="highlight">
+                    <span className="minor-content">Balance:</span><span className="highlight">${acc.balance.toFixed(2)}</span>
+                </CircleDiv>
+                <p>
+                    <span className="minor">Last updated: {acc.balanceUpdated}</span>
+                </p>
+            </CardDetail>
+        </CardWrapper>
+    </StyledAccountCard>
 )
 
 AccountCard.propTypes = {
@@ -37,7 +91,7 @@ AccountCard.propTypes = {
         balanceUpdated: PropTypes.string.isRequired,
         institutionName: PropTypes.string.isRequired,
         transitNumber: PropTypes.number.isRequired
-    }).isRequired
+    })
 }
 
 export default AccountCard

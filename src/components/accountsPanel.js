@@ -10,15 +10,8 @@ class AccountsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            accounts: null,
             accountsVisible: false
         }
-    }
-
-    componentDidMount() {
-        fetch('https://demo1124891.mockable.io/accounts', { mode: 'cors' })
-            .then(res => res.json())
-            .then(data => this.setState({ accounts: data.accounts }))
     }
 
     toggleWrapper = e => {
@@ -26,13 +19,13 @@ class AccountsList extends Component {
     }
 
     render() {
-        if (this.state.accounts) {
+        if (this.props.accounts) {
             return (
                 <Panel className="Accounts-List">
                     <CollapsiblePanelHeader header={this.props.header} collapsible={{ classNameToggle: this.state.accountsVisible, onClick: this.toggleWrapper, buttonText: this.state.accountsVisible? '-':'+' } } />
                     <CollapsibleWrapper className={this.state.accountsVisible? 'visible': 'preview'} >
                         <StyledUL>
-                            {this.state.accounts.map(acc => {
+                            {this.props.accounts.map(acc => {
                                 return (
                                     <li>
                                         <AccountCard {...acc} />
