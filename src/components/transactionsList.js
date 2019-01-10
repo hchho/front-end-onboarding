@@ -1,29 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Transaction from './transaction'
-import styled from 'styled-components'
-import StyledCard from './styled/StyledCard'
-
-const StyledUL = styled.ul`
-    list-style-type: none;
-`;
+import TransactionCard from './transactionCard'
+import StyledUL from './styled/StyledUnorderedList'
 
 const TransactionsList = ({ transactions }) => {
     if (transactions) {
         return (
             <div className="TransactionsList">
                 <span>Number of transactions: { transactions.length }</span>
-                <StyledCard>
                 <StyledUL>
                     {transactions.map(function (transaction, index) {
                         return (
                             <li key={transaction.transactionId}>
-                                <Transaction info={transaction} />
+                                <TransactionCard info={transaction} />
                             </li>
                         )
                     })}
                 </StyledUL>
-                </StyledCard>
             </div>
         )
     } else {

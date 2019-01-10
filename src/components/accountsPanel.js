@@ -3,6 +3,8 @@ import Panel from './styled/Panel'
 import CollapsibleWrapper from './styled/CollapsibleWrapper'
 import CollapsiblePanelHeader from './base/CollapsiblePanelHeader'
 import SecondaryButton from './styled/SecondaryButton'
+import StyledUL from './styled/StyledUnorderedList'
+import AccountCard from './accountCard'
 
 class AccountsList extends Component {
     constructor(props) {
@@ -29,35 +31,15 @@ class AccountsList extends Component {
                 <Panel className="Accounts-List">
                     <CollapsiblePanelHeader header={this.props.header} collapsible={{ classNameToggle: this.state.accountsVisible, onClick: this.toggleWrapper, buttonText: this.state.accountsVisible? '-':'+' } } />
                     <CollapsibleWrapper className={this.state.accountsVisible? 'visible': 'preview'} >
-                        <ul>
+                        <StyledUL>
                             {this.state.accounts.map(acc => {
                                 return (
                                     <li>
-                                        <p>
-                                            Account ID: {acc.accountId}
-                                        </p>
-                                        <p>
-                                            Account name: {acc.accountName}
-                                        </p>
-                                        <p>
-                                            Account no.: {acc.accountNumber}
-                                        </p>
-                                        <p>
-                                            Balance: {acc.balance}
-                                        </p>
-                                        <p>
-                                            Balance Updated: {acc.balanceUpdated}
-                                        </p>
-                                        <p>
-                                            Institution: {acc.institutionName}
-                                        </p>
-                                        <p>
-                                            Transit no.: {acc.transitNumber}
-                                        </p>
+                                        <AccountCard {...acc} />
                                     </li>
                                 )
                             })}
-                        </ul>
+                        </StyledUL>
                     </CollapsibleWrapper>
                     <SecondaryButton onClick={this.toggleWrapper}>{this.state.accountsVisible? 'See less' : 'See more'}</SecondaryButton>
                 </Panel>

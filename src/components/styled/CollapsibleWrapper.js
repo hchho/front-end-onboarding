@@ -6,7 +6,7 @@ const CollapsibleWrapper = styled(PanelContentWrapper)`
 
     &.visible {
         opacity: 1;
-        max-height: 1000px;
+        max-height: 1500px;
         transition: all 0.25s ease-out;
     }
 

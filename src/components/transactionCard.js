@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import StyledCard from './styled/StyledCard'
 
-const Transaction = ({ info }) => (
-    <div id={info.transactionId}>
+const TransactionCard = ({ info }) => (
+    <StyledCard id={info.transactionId}>
         <p>
             Account ID: { info.accountId }
         </p>
@@ -26,7 +26,7 @@ const Transaction = ({ info }) => (
         <p>
             Transaction ID: { info.transactionId }
         </p>
-    </div>
+    </StyledCard>
 )
 
 const renderTransactionType = function(withdrawal, deposit) {
@@ -47,7 +47,7 @@ const renderTransactionType = function(withdrawal, deposit) {
     return (<p>Neither deposited nor withdrew</p>)
 }
 
-Transaction.propTypes = {
+TransactionCard.propTypes = {
     info: PropTypes.shape({
         accountId: PropTypes.string.isRequired,
         transactionDate: PropTypes.string.isRequired,
@@ -61,4 +61,4 @@ Transaction.propTypes = {
     })
 }
 
-export default Transaction
+export default TransactionCard
