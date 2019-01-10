@@ -3,8 +3,15 @@ import DropDownMenu from './base/form-components/baseDropDownMenu'
 import CheckBoxContainer from './base/form-components/baseCheckBoxContainer'
 import CheckBox from './base/form-components/baseCheckBox'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import Form from './styled/Form'
 import PrimaryButton from './styled/PrimaryButton'
+import PrimaryOpposingButton from './styled/PrimaryOpposingButton'
+
+const ButtonDock = styled.div`
+    display: flex;
+    flex-direction: row
+`;
 
 const ASCENDING_DATE = 'ascending'
 const DESCENDING_DATE = 'descending'
@@ -78,7 +85,7 @@ class FilterForm extends Component {
                     <div className="form-group">
                         <label>Categories: </label>
                         <div className="check-container">
-                            <div className={this.state.selectAllCategories? 'form-check': 'inactive'}>
+                            <div className={this.state.selectAllCategories ? 'form-check' : 'inactive'}>
                                 SELECT ALL
                             <CheckBox name='SELECT_ALL_CATEGORIES' checked={this.state.selectAllCategories} onChange={this.handleSelectAllCategories} />
                             </div>
@@ -89,9 +96,10 @@ class FilterForm extends Component {
                         <label>Sort by date: </label>
                         <DropDownMenu selected={this.state.sortDirection} items={SORT_BY_DATE_OPTIONS} onChange={this.handleSortByDateChange} />
                     </div>
-                    <input type="button" value="Reset" onClick={this.resetFilterForm} />
-                    <PrimaryButton type="button" onClick={() => this.props.onClick(this.state)}>Submit</PrimaryButton>
-                    {/* <input type="button" value="Submit" onClick={() => this.props.onClick(this.state)} /> */}
+                    <ButtonDock>
+                        <PrimaryOpposingButton type="button" onClick={this.resetFilterForm}>Reset</PrimaryOpposingButton>
+                        <PrimaryButton type="button" onClick={() => this.props.onClick(this.state)}>Submit</PrimaryButton>
+                    </ButtonDock>
                 </Form>
             )
         } else {

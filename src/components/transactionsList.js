@@ -1,13 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Transaction from './transaction'
+import styled from 'styled-components'
+import StyledCard from './styled/StyledCard'
+
+const StyledUL = styled.ul`
+    list-style-type: none;
+`;
 
 const TransactionsList = ({ transactions }) => {
     if (transactions) {
         return (
             <div className="TransactionsList">
                 <span>Number of transactions: { transactions.length }</span>
-                <ul>
+                <StyledCard>
+                <StyledUL>
                     {transactions.map(function (transaction, index) {
                         return (
                             <li key={transaction.transactionId}>
@@ -15,7 +22,8 @@ const TransactionsList = ({ transactions }) => {
                             </li>
                         )
                     })}
-                </ul>
+                </StyledUL>
+                </StyledCard>
             </div>
         )
     } else {
