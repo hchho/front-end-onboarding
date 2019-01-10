@@ -45,7 +45,8 @@ const filterAccounts = (filter, accId) => {
 const mapStateToProps = (state, ownProps) => {
     if (state.initialTransactions && state.visibilityFilter) {
         return ({
-            transactions: getVisibleTransactions(state.initialTransactions, state.visibilityFilter)
+            transactions: getVisibleTransactions(state.initialTransactions, state.visibilityFilter),
+            pageSize: ownProps.pageSize
         })
     } else {
         return ({
