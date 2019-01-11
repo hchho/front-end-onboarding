@@ -16,16 +16,29 @@ align-items: center;
 flex-direction: column;
 font-weight: bold;
 `
-
+const DEFAULT_PAGE_SIZE = 10;
 
 class TransactionsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             startIndex: 0,
-            endIndex: 10,
-            pageSize: 10,
+            endIndex: DEFAULT_PAGE_SIZE,
+            pageSize: DEFAULT_PAGE_SIZE,
             accounts: this.props.accounts
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        return state
+    }
+
+    componentDidUpdate(prevProps, prevState, snapShot) {
+        if (prevState.endIndex < DEFAULT_PAGE_SIZE) {
+            this.setState({ endIndex: DEFAULT_PAGE_SIZE })
+        }
+        if (this.state.endIndex > this.props.transactions.length) {
+            this.setState({ endIndex: this.props.transactions.length })
         }
     }
 
@@ -49,12 +62,6 @@ class TransactionsList extends Component {
         }
     }
 
-    adjustEndIndex = () => {
-        if (this.state.endIndex > this.props.transactions.length) {
-            this.setState({ endIndex: this.props.transactions.length })
-        }
-    }
-
     getNavState = () => {
         return {
             prevPageFunc: this.prevPage,
@@ -68,8 +75,7 @@ class TransactionsList extends Component {
     }
 
     render() {
-        if (this.props.transactions && (this.state.accounts && this.state.accounts !== [])) {
-            this.adjustEndIndex()
+        if (this.props.transactions && (this.state.accounts && this.state.accounts.length > 0)) {
             return (
                 <div className="TransactionsList">
                     <NavigationButtonDock {...this.getNavState()} />

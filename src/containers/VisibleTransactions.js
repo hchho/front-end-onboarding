@@ -51,8 +51,9 @@ const filterAccounts = (filter, accId) => {
 
 const mapStateToProps = (state, ownProps) => {
     if (state.initialTransactions && state.accounts && state.visibilityFilter) {
+        let visibleTransactions = getVisibleTransactions(state.initialTransactions.transactions, state.visibilityFilter)
         return ({
-            transactions: getVisibleTransactions(state.initialTransactions.transactions, state.visibilityFilter),
+            transactions: visibleTransactions,
             accounts: state.accounts
         })
     } else {

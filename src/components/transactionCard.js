@@ -36,7 +36,7 @@ const TransactionCard = ({ info, accountName }) => {
                 <TransactionDetailWrapper>
                     {info.transactionDate}
                     <p className="minor">
-                        {info.transactionId}
+                        ID: {info.transactionId}
                     </p>
                 </TransactionDetailWrapper>
                 <TransactionDetailWrapper className="description">
@@ -71,14 +71,14 @@ const renderTransactionType = function (withdrawal, deposit) {
     if (withdrawal) {
         return (
             <TransactionDetailWrapper style={{ color: 'red'}}>
-                -{withdrawal}
+                -${withdrawal.toFixed(2)}
             </TransactionDetailWrapper>
         )
     }
     if (deposit) {
         return (
             <TransactionDetailWrapper style={{color: 'green'}}>
-                {deposit}
+                ${deposit.toFixed(2)}
             </TransactionDetailWrapper>
         )
     }
