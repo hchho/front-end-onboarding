@@ -5,7 +5,8 @@ import FilterForm from '../components/filterForm'
 const mapStateToProps = state => {
     return ({
         activeCategories: state.visibilityFilter,
-        accounts: state.accounts
+        accounts: state.accounts,
+        categories: state.categories
     })
 }
 

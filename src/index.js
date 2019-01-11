@@ -32,4 +32,11 @@ fetch('http://demo1124891.mockable.io/accounts', { mode: 'cors' })
         store.dispatch({ type: 'FETCH_ACCOUNTS', payload: data.accounts })
     })
 
+
+    fetch('http://demo1124891.mockable.io/categories', { mode: 'cors' })
+    .then(res => res.json())
+    .then(data => {
+        store.dispatch({ type: 'FETCH_CATEGORIES', payload: data.categories })
+    })
+
 serviceWorker.unregister();

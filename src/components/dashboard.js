@@ -8,13 +8,9 @@ class DashBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            accounts: null
+            accounts: this.props.accounts
         }
-    }
-    componentDidMount() {
-        fetch('https://demo1124891.mockable.io/accounts', { mode: 'cors' })
-            .then(res => res.json())
-            .then(data => this.setState({ accounts: data.accounts }))
+        console.log(this.props)
     }
 
     getTotalBalance = (total, num) => {
@@ -22,7 +18,7 @@ class DashBoard extends Component {
     }
 
     render() {
-        if (this.state.accounts) {
+        if (this.state.accounts !== []) {
             return (
                 <StyledDashBoard>
                     <SummaryPanel header='Summary' {...{ totalBalance: this.state.accounts.map(acc => acc.balance).reduce(this.getTotalBalance), ...this.props}} />

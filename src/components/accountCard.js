@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StyledCard from './styled/StyledCard'
 import styled from 'styled-components'
+import CardWrapper from './styled/CardWrapper'
+import CardDetailWrapper from './styled/CardDetailWrapper'
 
 const StyledAccountCard = styled(StyledCard)`
     span.minor {
@@ -32,17 +34,7 @@ const CircleDiv = styled.div`
     }
 `;
 
-const CardWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-`;
-
-const CardDetail = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-
+const AccountDetailWrapper = styled(CardDetailWrapper)`
     &.important-details {
         display: flex;
         justify-content: center;
@@ -64,7 +56,7 @@ const AccountCard = ({ ...acc }) => (
         <h3>{acc.accountName}</h3>
         <span className="minor">ID: {acc.accountId}</span>
         <CardWrapper>
-            <CardDetail className="details">
+            <AccountDetailWrapper className="details">
                 <p>
                     <span>Institution:</span><b>{acc.institutionName}</b>
                 </p>
@@ -74,15 +66,15 @@ const AccountCard = ({ ...acc }) => (
                 <p>
                     <span>Transit no.:</span> <b>{acc.transitNumber}</b>
                 </p>
-            </CardDetail>
-            <CardDetail className="important-details">
+            </AccountDetailWrapper>
+            <AccountDetailWrapper className="important-details">
                 <CircleDiv className="highlight">
                     <span className="minor-content">Balance:</span><span className="highlight">${acc.balance.toFixed(2)}</span>
                 </CircleDiv>
                 <p>
                     <span className="minor">Last updated: {acc.balanceUpdated}</span>
                 </p>
-            </CardDetail>
+            </AccountDetailWrapper>
         </CardWrapper>
     </StyledAccountCard>
 )

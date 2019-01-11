@@ -51,6 +51,7 @@ const mapStateToProps = (state, ownProps) => {
     } else {
         return ({
             transactions: state.initialTransactions,
+            accounts: state.accounts
         })
     }
 }

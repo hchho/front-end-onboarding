@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import styled from 'styled-components'
-import DashBoard from './components/dashboard'
+// import DashBoard from './components/dashboard'
+import DashBoard from './containers/DashBoard'
 import StyledApp from './components/styled/AppContainer'
 import StyledHeader from './components/styled/Header'
 

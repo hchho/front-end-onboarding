@@ -43,7 +43,7 @@ class TransactionsList extends Component {
     }
 
     render() {
-        if (this.props.transactions && (this.props.accounts | this.props.accounts !== [])) {
+        if (this.props.transactions && (this.state.accounts && this.state.accounts !== [])) {
             this.adjustEndIndex()
             return (
                 <div className="TransactionsList">
@@ -56,7 +56,6 @@ class TransactionsList extends Component {
                         endIndex={this.state.endIndex}
                         totalLength={this.props.transactions.length}
                     />
-                    <span>Number of transactions: {this.props.transactions.length}</span>
                     <StyledUL>
                         {this.props.transactions.slice(this.state.startIndex, this.state.endIndex).map((transaction, index) => {
                             return (
