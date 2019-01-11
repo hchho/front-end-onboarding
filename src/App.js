@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import styled from 'styled-components'
-// import DashBoard from './components/dashboard'
 import DashBoard from './containers/DashBoard'
 import StyledApp from './components/styled/AppContainer'
 import StyledHeader from './components/styled/Header'
+import headerImage from './_assets/Kumquat.png'
 
 const Footer = styled.div`
   padding: 5px;
@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <StyledApp>
         <StyledHeader>
-          <h1>kumQuat</h1>
+          <h1>kum<img src={headerImage} alt="kumquat" style={{height: '1em', transform: 'scaleY(-1)'}}/>uat</h1>
         </StyledHeader>
         <DashBoard {...this.state.info} />
         <Footer className="footer">
