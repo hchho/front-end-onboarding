@@ -34,9 +34,9 @@ const StyledNavButton = styled.button`
 
 const NavigationButtonDock = ({ prevPageFunc, nextPageFunc, prevButtonState, nextButtonState, startIndex, endIndex, totalLength }) => (
     <StyledButtonDock>
-        <StyledNavButton onClick={prevPageFunc} disabled={prevButtonState}>Back</StyledNavButton>
+        <StyledNavButton onClick={prevPageFunc} disabled={prevButtonState}>&#8249; Back</StyledNavButton>
         <span>Showing {startIndex} - {endIndex} of {totalLength}</span>
-        <StyledNavButton onClick={nextPageFunc} disabled={nextButtonState}>Next</StyledNavButton>
+        <StyledNavButton onClick={nextPageFunc} disabled={nextButtonState}>Next &#8250;</StyledNavButton>
     </StyledButtonDock>
 )
 

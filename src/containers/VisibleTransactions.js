@@ -46,11 +46,11 @@ const mapStateToProps = (state, ownProps) => {
     if (state.initialTransactions && state.visibilityFilter) {
         return ({
             transactions: getVisibleTransactions(state.initialTransactions, state.visibilityFilter),
-            pageSize: ownProps.pageSize
+            accounts: state.accounts
         })
     } else {
         return ({
-            transactions: state.initialTransactions
+            transactions: state.initialTransactions,
         })
     }
 }

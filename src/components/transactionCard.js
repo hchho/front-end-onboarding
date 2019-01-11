@@ -1,48 +1,78 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import StyledCard from './styled/StyledCard'
 
-const TransactionCard = ({ info }) => {
-    return (
-    <StyledCard id={info.transactionId}>
-        <p>
-            Account ID: { info.accountId }
-        </p>
-        <p>
-            Transaction date: { info.transactionDate }
-        </p>
-        <p>
-            Description: { info.description? info.description: 'N/A' }
-        </p>
-        <p>
-            Amount: { info.amount }
-        </p>
-        {renderTransactionType(info.withdrawal, info.deposit)}
-        <p>
-            Running balance: { info.runningBalance }
-        </p>
-        <p>
-            Category: { info.category }
-        </p>
-        <p>
-            Transaction ID: { info.transactionId }
-        </p>
-    </StyledCard>
-)}
+const StyledTransactionCard = styled(StyledCard)`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 
-const renderTransactionType = function(withdrawal, deposit) {
+    span {
+        font-size: 0.75em;
+        color: #666;
+    }
+`;
+
+const CardDetail = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 10;
+`;
+
+const DateContainer = styled(CardDetail)`
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+
+
+const TransactionCard = ({ info, accountName }) => {
+    return (
+        <StyledTransactionCard id={info.transactionId}>
+            <DateContainer>
+                {info.transactionDate}
+                <span>
+                    {info.transactionId}
+                </span>
+            </DateContainer>
+            <CardDetail>
+                Description: {info.description ? info.description : 'N/A'}
+                <p>
+                    {accountName}
+                </p>
+            </CardDetail>
+            <CardDetail>
+                {formatString(info.category)}
+            </CardDetail>
+            {renderTransactionType(info.withdrawal, info.deposit)}
+            <CardDetail>
+                {info.runningBalance}
+            </CardDetail>
+        </StyledTransactionCard>
+    )
+}
+
+const formatString = (originalString) => {
+    return originalString.replace(/_/g, ' ');
+}
+
+
+const renderTransactionType = function (withdrawal, deposit) {
     if (withdrawal) {
         return (
-            <p>
-                Withdrawal: {withdrawal}
-            </p>
+            <CardDetail>
+                -{withdrawal}
+            </CardDetail>
         )
     }
     if (deposit) {
         return (
-            <p>
-                Deposit: {deposit}
-            </p>
+            <CardDetail>
+                {deposit}
+            </CardDetail>
         )
     }
     return (<p>Neither deposited nor withdrew</p>)
@@ -59,7 +89,8 @@ TransactionCard.propTypes = {
         runningBalance: PropTypes.number.isRequired,
         category: PropTypes.string,
         transactionId: PropTypes.string.isRequired
-    })
+    }).isRequired,
+    accountName: PropTypes.string.isRequired
 }
 
 export default TransactionCard

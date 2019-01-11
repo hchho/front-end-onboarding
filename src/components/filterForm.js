@@ -36,7 +36,7 @@ class FilterForm extends Component {
         super(props);
         this.state = {
             categories: [],
-            accounts: [],
+            accounts: this.props.accounts,
             activeCategories: new Map(),
             ...DEFAULT_FILTERS
         }
@@ -46,10 +46,6 @@ class FilterForm extends Component {
         fetch('http://demo1124891.mockable.io/categories', { mode: 'cors' })
             .then(res => res.json())
             .then(data => this.setState({ categories: data.categories }))
-
-        fetch('http://demo1124891.mockable.io/accounts', { mode: 'cors' })
-            .then(res => res.json())
-            .then(data => this.setState({ accounts: data.accounts }))
     }
 
     handleCategoryChange = e => {

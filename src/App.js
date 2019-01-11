@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
+import styled from 'styled-components'
 import DashBoard from './components/dashboard'
 import StyledApp from './components/styled/AppContainer'
 import StyledHeader from './components/styled/Header'
+
+const Footer = styled.div`
+  padding: 5px;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +36,9 @@ class App extends Component {
           <h1>GumQuat</h1>
         </StyledHeader>
         <DashBoard {...this.state.info} />
+        <Footer className="footer">
+          Created by Henry Ho
+        </Footer>
       </StyledApp>
     );
   }

@@ -12,6 +12,7 @@ class TransactionsList extends Component {
             startIndex: 0,
             endIndex: 10,
             pageSize: 10,
+            accounts: this.props.accounts
         }
     }
 
@@ -42,7 +43,7 @@ class TransactionsList extends Component {
     }
 
     render() {
-        if (this.props.transactions) {
+        if (this.props.transactions && (this.props.accounts | this.props.accounts !== [])) {
             this.adjustEndIndex()
             return (
                 <div className="TransactionsList">
@@ -57,10 +58,10 @@ class TransactionsList extends Component {
                     />
                     <span>Number of transactions: {this.props.transactions.length}</span>
                     <StyledUL>
-                        {this.props.transactions.slice(this.state.startIndex, this.state.endIndex).map(function (transaction, index) {
+                        {this.props.transactions.slice(this.state.startIndex, this.state.endIndex).map((transaction, index) => {
                             return (
                                 <li key={transaction.transactionId}>
-                                    <TransactionCard info={transaction} />
+                                    <TransactionCard info={transaction} accountName={this.state.accounts.find(acc => acc.accountId === transaction.accountId).accountName} />
                                 </li>
                             )
                         })}
@@ -68,8 +69,8 @@ class TransactionsList extends Component {
                     <NavigationButtonDock
                         prevPageFunc={this.prevPage}
                         nextPageFunc={this.nextPage}
-                        prevButtonState={!(this.state.startIndex === 0)}
-                        nextButtonState={!(this.state.endIndex === this.props.transactions.length)}
+                        prevButtonState={this.state.startIndex === 0}
+                        nextButtonState={this.state.endIndex === this.props.transactions.length}
                         startIndex={this.state.startIndex + 1}
                         endIndex={this.state.endIndex}
                         totalLength={this.props.transactions.length}
