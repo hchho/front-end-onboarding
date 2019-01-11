@@ -8,6 +8,7 @@ import StyledHeader from './components/styled/Header'
 
 const Footer = styled.div`
   padding: 5px;
+  font-size: 0.75em;
 `;
 
 class App extends Component {
@@ -34,7 +35,7 @@ class App extends Component {
     return (
       <StyledApp>
         <StyledHeader>
-          <h1>GumQuat</h1>
+          <h1>kumQuat</h1>
         </StyledHeader>
         <DashBoard {...this.state.info} />
         <Footer className="footer">

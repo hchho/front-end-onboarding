@@ -18,6 +18,7 @@ const DropDownMenu = ({ selected, items, onChange }) => {
 }
 
 DropDownMenu.propTypes = {
+    selected: PropTypes.string.isRequired,
     items: PropTypes.shape({
         value: PropTypes.string.isRequired,
         option: PropTypes.string.isRequired,

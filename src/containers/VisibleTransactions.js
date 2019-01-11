@@ -11,7 +11,7 @@ const getVisibleTransactions = (transactions, filter) => {
             return processedTransactions
         case filter:
             return processedTransactions.filter(t => {
-                return filterAccounts(filter.activeAccounts, t.accountId) && (filter.selectAllCategories || filter.activeCategories.has(t.category))})
+                return filterAccounts(filter.activeAccounts, t.accountId) && (filter.selectAllCategories || filter.activeCategories.has(t.category)) && filterDates(filter, t)})
         default:
             throw new Error('Unknown filter: ' + filter)
     }
@@ -31,6 +31,13 @@ const sortTransactions = (sortByValue, transactions) => {
     }
 }
 
+const filterDates = (filter, transaction) => {
+    let transactionDate = new Date(transaction.transactionDate).getTime()
+    let startDate = new Date(filter.filterEarliestDate).getTime()
+    let endDate = new Date(filter.filterLatestDate).getTime()
+    return transactionDate >= startDate && transactionDate <= endDate
+}
+
 const filterAccounts = (filter, accId) => {
     switch (filter) {
         case 'SHOW_ALL':
@@ -43,14 +50,14 @@ const filterAccounts = (filter, accId) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    if (state.initialTransactions && state.visibilityFilter) {
+    if (state.initialTransactions && state.accounts && state.visibilityFilter) {
         return ({
-            transactions: getVisibleTransactions(state.initialTransactions, state.visibilityFilter),
+            transactions: getVisibleTransactions(state.initialTransactions.transactions, state.visibilityFilter),
             accounts: state.accounts
         })
     } else {
         return ({
-            transactions: state.initialTransactions,
+            transactions: state.initialTransactions.transactions,
             accounts: state.accounts
         })
     }

@@ -8,10 +8,30 @@ import { createStore } from 'redux'
 import rootReducer from './reducers'
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(rootReducer)
+const appStore = createStore(rootReducer)
+
+fetch('http://demo1124891.mockable.io/transactions', { mode: 'cors' })
+    .then(res => res.json())
+    .then(data => {
+        appStore.dispatch({ type: 'INITIALIZE_TRANSACTIONS', payload: data })
+    })
+
+fetch('http://demo1124891.mockable.io/accounts', { mode: 'cors' })
+    .then(res => res.json())
+    .then(data => {
+        appStore.dispatch({ type: 'FETCH_ACCOUNTS', payload: data.accounts })
+    })
+
+
+fetch('http://demo1124891.mockable.io/categories', { mode: 'cors' })
+    .then(res => res.json())
+    .then(data => {
+        appStore.dispatch({ type: 'FETCH_CATEGORIES', payload: data.categories })
+    })
+
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={appStore}>
         <App />
     </Provider>,
     document.getElementById('root'));
@@ -20,23 +40,7 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 
-fetch('http://demo1124891.mockable.io/transactions', { mode: 'cors' })
-    .then(res => res.json())
-    .then(data => {
-        store.dispatch({ type: 'INITIALIZE_TRANSACTIONS', payload: data.transactions })
-    })
-
-fetch('http://demo1124891.mockable.io/accounts', { mode: 'cors' })
-    .then(res => res.json())
-    .then(data => {
-        store.dispatch({ type: 'FETCH_ACCOUNTS', payload: data.accounts })
-    })
 
 
-    fetch('http://demo1124891.mockable.io/categories', { mode: 'cors' })
-    .then(res => res.json())
-    .then(data => {
-        store.dispatch({ type: 'FETCH_CATEGORIES', payload: data.categories })
-    })
 
 serviceWorker.unregister();

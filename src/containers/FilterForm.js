@@ -6,7 +6,8 @@ const mapStateToProps = state => {
     return ({
         activeCategories: state.visibilityFilter,
         accounts: state.accounts,
-        categories: state.categories
+        categories: state.categories,
+        transactions: state.initialTransactions
     })
 }
 

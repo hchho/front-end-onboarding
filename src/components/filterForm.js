@@ -37,7 +37,11 @@ class FilterForm extends Component {
         this.state = {
             categories: this.props.categories,
             accounts: this.props.accounts,
+            earliestDate: this.props.transactions.earliestTransactionDate,
+            latestDate: this.props.transactions.latestTransactionDate,
             activeCategories: new Map(),
+            filterEarliestDate: this.props.transactions.earliestTransactionDate,
+            filterLatestDate: this.props.transactions.latestTransactionDate,
             ...DEFAULT_FILTERS
         }
     }
@@ -60,12 +64,21 @@ class FilterForm extends Component {
         this.setState({ sortDirection: e.target.value })
     }
 
+    handleEarliestDateChange = e => {
+        this.setState({ filterEarliestDate: e.target.value })
+        console.log(this.state)
+    }
+
+    handleLatestDateChange = e => {
+        this.setState({ filterLatestDate: e.target.value })
+    }
+
     resetFilterForm = e => {
         this.setState({ ...DEFAULT_FILTERS, activeCategories: new Map() })
     }
 
     render() {
-        if ((this.state.categories !== []) && this.state.accounts !== []) {
+        if ((this.state.categories.length > 0) && this.state.accounts.length > 0) {
             return (
                 <Form>
                     <div className="form-group">
@@ -85,6 +98,10 @@ class FilterForm extends Component {
                     <div className="form-group">
                         <label>Sort by date: </label>
                         <DropDownMenu selected={this.state.sortDirection} items={SORT_BY_DATE_OPTIONS} onChange={this.handleSortByDateChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Date range: </label>
+                        <input type="date" name="startFromDate" value={this.state.filterEarliestDate} onChange={this.handleEarliestDateChange}/> to <input type="date" name="startFromDate" value={this.state.filterLatestDate} onChange={this.handleLatestDateChange} />
                     </div>
                     <ButtonDock>
                         <PrimaryOpposingButton type="button" onClick={this.resetFilterForm}>Reset</PrimaryOpposingButton>

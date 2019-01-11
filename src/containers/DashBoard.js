@@ -4,7 +4,7 @@ import DashBoard from '../components/dashboard'
 const mapStateToProps = state => {
     return ({
         accounts: state.accounts,
-        info: state.transactions
+        info: state.initialTransactions.transactions
     })
 }
 

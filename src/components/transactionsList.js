@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import TransactionCard from './transactionCard'
+import CardDetailWrapper from './styled/CardDetailWrapper'
+import CardWrapper from './styled/CardWrapper'
 import StyledUL from './styled/StyledUnorderedList'
+import StyledCard from './styled/StyledCard'
 import NavigationButtonDock from './NavigationButtonDock'
+
+const CardHeaderWrapper = styled(CardDetailWrapper)`
+flex-basis: 0;
+padding: 10;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+font-weight: bold;
+`
 
 
 class TransactionsList extends Component {
@@ -42,21 +55,46 @@ class TransactionsList extends Component {
         }
     }
 
+    getNavState = () => {
+        return {
+            prevPageFunc: this.prevPage,
+            nextPageFunc: this.nextPage,
+            prevButtonState: this.state.startIndex === 0,
+            nextButtonState: this.state.endIndex === this.props.transactions.length,
+            startIndex: this.state.startIndex + 1,
+            endIndex: this.state.endIndex,
+            totalLength: this.props.transactions.length
+        }
+    }
+
     render() {
         if (this.props.transactions && (this.state.accounts && this.state.accounts !== [])) {
             this.adjustEndIndex()
             return (
                 <div className="TransactionsList">
-                    <NavigationButtonDock
-                        prevPageFunc={this.prevPage}
-                        nextPageFunc={this.nextPage}
-                        prevButtonState={this.state.startIndex === 0}
-                        nextButtonState={this.state.endIndex === this.props.transactions.length}
-                        startIndex={this.state.startIndex + 1}
-                        endIndex={this.state.endIndex}
-                        totalLength={this.props.transactions.length}
-                    />
+                    <NavigationButtonDock {...this.getNavState()} />
                     <StyledUL>
+                        <li key='-1'>
+                            <StyledCard className="TransactionHeader">
+                                <CardWrapper>
+                                    <CardHeaderWrapper>
+                                        Date
+                                    </CardHeaderWrapper>
+                                    <CardHeaderWrapper>
+                                        Description
+                                    </CardHeaderWrapper>
+                                    <CardHeaderWrapper>
+                                        Category
+                                    </CardHeaderWrapper>
+                                    <CardHeaderWrapper>
+                                        Amount transferred
+                                    </CardHeaderWrapper>
+                                    <CardHeaderWrapper>
+                                        Running balance
+                                    </CardHeaderWrapper>
+                                </CardWrapper>
+                            </StyledCard>
+                        </li>
                         {this.props.transactions.slice(this.state.startIndex, this.state.endIndex).map((transaction, index) => {
                             return (
                                 <li key={transaction.transactionId}>
@@ -65,15 +103,7 @@ class TransactionsList extends Component {
                             )
                         })}
                     </StyledUL>
-                    <NavigationButtonDock
-                        prevPageFunc={this.prevPage}
-                        nextPageFunc={this.nextPage}
-                        prevButtonState={this.state.startIndex === 0}
-                        nextButtonState={this.state.endIndex === this.props.transactions.length}
-                        startIndex={this.state.startIndex + 1}
-                        endIndex={this.state.endIndex}
-                        totalLength={this.props.transactions.length}
-                    />
+                    <NavigationButtonDock {...this.getNavState()} />
                 </div>
             )
         } else {
@@ -97,7 +127,8 @@ TransactionsList.propTypes = {
                 transactionId: PropTypes.string.isRequired
             })
         }).isRequired
-    ).isRequired
+    ),
+    accounts: PropTypes.array.isRequired
 }
 
 export default TransactionsList

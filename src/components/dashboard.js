@@ -10,7 +10,6 @@ class DashBoard extends Component {
         this.state = {
             accounts: this.props.accounts
         }
-        console.log(this.props)
     }
 
     getTotalBalance = (total, num) => {
@@ -18,7 +17,7 @@ class DashBoard extends Component {
     }
 
     render() {
-        if (this.state.accounts !== []) {
+        if (this.state.accounts.length > 0) {
             return (
                 <StyledDashBoard>
                     <SummaryPanel header='Summary' {...{ totalBalance: this.state.accounts.map(acc => acc.balance).reduce(this.getTotalBalance), ...this.props}} />

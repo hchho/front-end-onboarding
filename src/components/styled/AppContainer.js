@@ -5,7 +5,6 @@ const StyledAppContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // background: #EFF7FF;
     background-image: linear-gradient(#FFF, #EFF7FF);
     background-size: 100% auto;
     background-attachment: fixed;
