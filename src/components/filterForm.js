@@ -13,6 +13,11 @@ const ButtonDock = styled.div`
     flex-direction: row
 `;
 
+const DateInput = styled.input`
+    font-family: "Helvetica", arial, sans-serif;
+    margin: 5px;
+`;
+
 const ASCENDING_DATE = 'ascending'
 const DESCENDING_DATE = 'descending'
 const SORT_BY_DATE_OPTIONS = [
@@ -66,7 +71,6 @@ class FilterForm extends Component {
 
     handleEarliestDateChange = e => {
         this.setState({ filterEarliestDate: e.target.value })
-        console.log(this.state)
     }
 
     handleLatestDateChange = e => {
@@ -101,7 +105,7 @@ class FilterForm extends Component {
                     </div>
                     <div className="form-group">
                         <label>Date range: </label>
-                        <input type="date" name="startFromDate" value={this.state.filterEarliestDate} onChange={this.handleEarliestDateChange}/> to <input type="date" name="startFromDate" value={this.state.filterLatestDate} onChange={this.handleLatestDateChange} />
+                        <DateInput type="date" name="startFromDate" value={this.state.filterEarliestDate} onChange={this.handleEarliestDateChange}/> to <DateInput type="date" name="startFromDate" value={this.state.filterLatestDate} onChange={this.handleLatestDateChange} />
                     </div>
                     <ButtonDock>
                         <PrimaryOpposingButton type="button" onClick={this.resetFilterForm}>Reset</PrimaryOpposingButton>
