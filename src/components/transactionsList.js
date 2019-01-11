@@ -1,33 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import TransactionCard from './transactionCard'
 import StyledUL from './styled/StyledUnorderedList'
+import NavigationButtonDock from './NavigationButtonDock'
 
-const NavigationButtonDock = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 5px;
-
-    span {
-        width: 200px;
-        text-align: center;
-    }
-`;
-
-const NavigationButton = styled.button`
-    border: none;
-    text-decoration: underline;
-
-    :hover {
-        text-decoration: none;
-        color: #82204A;
-    }
-
-    :focus {
-        outline: 0;
-    }
-`;
 
 class TransactionsList extends Component {
     constructor(props) {
@@ -41,7 +17,7 @@ class TransactionsList extends Component {
 
     nextPage = e => {
         if (this.state.endIndex + this.state.pageSize < this.props.transactions.length) {
-            this.setState(prevState => ({ startIndex: prevState.startIndex + prevState.pageSize, endIndex: prevState.endIndex + prevState.pageSize}))
+            this.setState(prevState => ({ startIndex: prevState.startIndex + prevState.pageSize, endIndex: prevState.endIndex + prevState.pageSize }))
         } else if (this.state.endIndex === this.props.transactions.length) {
             return
         } else {
@@ -53,16 +29,16 @@ class TransactionsList extends Component {
         if (this.state.startIndex === 0) {
             return
         } else if (this.state.endIndex === this.props.transactions.length) {
-            this.setState(prevState => ({ startIndex: prevState.startIndex - prevState.pageSize, endIndex: prevState.endIndex - (this.props.transactions.length % prevState.pageSize)}))
+            this.setState(prevState => ({ startIndex: prevState.startIndex - prevState.pageSize, endIndex: prevState.endIndex - (this.props.transactions.length % prevState.pageSize) }))
         } else {
-            this.setState(prevState => ({ startIndex: prevState.startIndex - prevState.pageSize, endIndex: prevState.endIndex - prevState.pageSize}))
+            this.setState(prevState => ({ startIndex: prevState.startIndex - prevState.pageSize, endIndex: prevState.endIndex - prevState.pageSize }))
         }
     }
 
     adjustEndIndex = () => {
-        if(this.state.endIndex > this.props.transactions.length) {
+        if (this.state.endIndex > this.props.transactions.length) {
             this.setState({ endIndex: this.props.transactions.length })
-        } 
+        }
     }
 
     render() {
@@ -70,11 +46,15 @@ class TransactionsList extends Component {
             this.adjustEndIndex()
             return (
                 <div className="TransactionsList">
-                    <NavigationButtonDock>
-                        <NavigationButton onClick={this.prevPage} active={!(this.state.startIndex === 0)}>Back</NavigationButton>
-                        <span>Showing {this.state.startIndex + 1} - {this.state.endIndex} of {this.props.transactions.length}</span>
-                        <NavigationButton onClick={this.nextPage} active={!(this.state.endIndex === this.props.transactions.length)}>Next</NavigationButton>
-                    </NavigationButtonDock>
+                    <NavigationButtonDock
+                        prevPageFunc={this.prevPage}
+                        nextPageFunc={this.nextPage}
+                        prevButtonState={this.state.startIndex === 0}
+                        nextButtonState={this.state.endIndex === this.props.transactions.length}
+                        startIndex={this.state.startIndex + 1}
+                        endIndex={this.state.endIndex}
+                        totalLength={this.props.transactions.length}
+                    />
                     <span>Number of transactions: {this.props.transactions.length}</span>
                     <StyledUL>
                         {this.props.transactions.slice(this.state.startIndex, this.state.endIndex).map(function (transaction, index) {
@@ -85,11 +65,15 @@ class TransactionsList extends Component {
                             )
                         })}
                     </StyledUL>
-                    <NavigationButtonDock>
-                        <NavigationButton onClick={this.prevPage} active={!(this.state.startIndex === 0)}>Back</NavigationButton>
-                        <span>Showing {this.state.startIndex + 1} - {this.state.endIndex} of {this.props.transactions.length}</span>
-                        <NavigationButton onClick={this.nextPage} active={!(this.state.endIndex === this.props.transactions.length)}>Next</NavigationButton>
-                    </NavigationButtonDock>
+                    <NavigationButtonDock
+                        prevPageFunc={this.prevPage}
+                        nextPageFunc={this.nextPage}
+                        prevButtonState={!(this.state.startIndex === 0)}
+                        nextButtonState={!(this.state.endIndex === this.props.transactions.length)}
+                        startIndex={this.state.startIndex + 1}
+                        endIndex={this.state.endIndex}
+                        totalLength={this.props.transactions.length}
+                    />
                 </div>
             )
         } else {

@@ -75,7 +75,7 @@ class FilterForm extends Component {
     }
 
     render() {
-        if ((this.state.categories !== []) && this.state.accounts) {
+        if ((this.state.categories !== []) && this.state.accounts !== []) {
             return (
                 <Form>
                     <div className="form-group">

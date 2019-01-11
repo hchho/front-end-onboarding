@@ -27,7 +27,7 @@ class AccountsList extends Component {
                         <StyledUL>
                             {this.props.accounts.map(acc => {
                                 return (
-                                    <li>
+                                    <li key={acc.accountId}>
                                         <AccountCard {...acc} />
                                     </li>
                                 )

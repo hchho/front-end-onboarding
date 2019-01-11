@@ -66,10 +66,10 @@ const AccountCard = ({ ...acc }) => (
         <CardWrapper>
             <CardDetail className="details">
                 <p>
-                    <span>Account no.:</span><b>{acc.accountNumber}</b>
+                    <span>Institution:</span><b>{acc.institutionName}</b>
                 </p>
                 <p>
-                    <span>Institution:</span><b>{acc.institutionName}</b>
+                    <span>Account no.:</span><b>{acc.accountNumber}</b>
                 </p>
                 <p>
                     <span>Transit no.:</span> <b>{acc.transitNumber}</b>

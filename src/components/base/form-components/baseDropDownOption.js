@@ -1,7 +1,7 @@
 import React from 'react'
 
-const DropDownOption = ({ index, value, option }) => (
-            <option key={index} value={value}>{formatString(option)}</option>
+const DropDownOption = ({ value, option }) => (
+            <option value={value}>{formatString(option)}</option>
 )
 
 const formatString = (originalString) => {

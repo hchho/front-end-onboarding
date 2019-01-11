@@ -9,7 +9,7 @@ const DropDownMenu = ({ selected, items, onChange }) => {
                 onChange={onChange}
                 value={selected}
             >
-                {items.map((item, index) => (<DropDownOption index={index} value={item.value} option={item.option} />))}
+                {items.map((item, index) => (<DropDownOption key={index} value={item.value} option={item.option} />))}
             </select>
         )
     } else {
